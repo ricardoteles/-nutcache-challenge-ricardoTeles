@@ -1,0 +1,52 @@
+<h1 mat-dialog-title>{{title}}</h1>
+<mat-sidenav-container>
+    <mat-sidenav-content>
+        <form [formGroup]="employeeForm" (ngSubmit)="submitForm()" novalidate>
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Name" formControlName="name" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput readonly [matDatepicker]="pickerBirthDate" placeholder="Date of birth"
+                    formControlName="birthDate" (dateChange)="date($event, 'birthDate')" />
+                <mat-datepicker-toggle matSuffix [for]="pickerBirthDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerBirthDate></mat-datepicker>
+            </mat-form-field>
+
+            <div class="misc-bottom-padding">
+                <mat-label>Gender:</mat-label>
+                <mat-radio-group aria-label="Select an option" formControlName="gender">
+                    <mat-radio-button value="Male">Male</mat-radio-button>
+                    <mat-radio-button value="Female">Female</mat-radio-button>
+                </mat-radio-group>
+            </div>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Email" formControlName="email" />
+            </mat-form-field>
+
+            <mat-form-field class="example-full-width">
+                <input matInput placeholder="Cpf" formControlName="cpf" />
+            </mat-form-field>
+
+            <mat-form-field>
+                <input matInput readonly [matDatepicker]="pickerStartDate" placeholder="Date of start"
+                    formControlName="startDate" (dateChange)="date($event, 'startDate')" />
+                <mat-datepicker-toggle matSuffix [for]="pickerStartDate"></mat-datepicker-toggle>
+                <mat-datepicker #pickerStartDate></mat-datepicker>
+            </mat-form-field>
+
+            <mat-form-field>
+                <mat-label>Team</mat-label>
+                <mat-select formControlName="team">
+                    <mat-option [value]="team" *ngFor="let team of teamOptions">{{ team }}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+
+            <div class="button-wrapper">
+                <button mat-flat-button color="primary">Enviar</button>
+            </div>
+        </form>
+    </mat-sidenav-content>
+</mat-sidenav-container>

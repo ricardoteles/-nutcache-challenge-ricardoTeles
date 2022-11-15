@@ -1,3 +1,4 @@
+import { EmployeeFormComponent } from './components/employee-form/employee-form.component';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
@@ -8,11 +9,15 @@ import { EmployeeListComponent } from './components/employee-list/employee-list.
 import { AngularMaterialModule } from './material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { ReactiveFormsModule } from '@angular/forms';
+import { ConfirmModalComponent } from './components/confirm-modal/confirm-modal.component';
+import { EmployeeService } from './shared/services/employee.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    EmployeeListComponent
+    EmployeeListComponent,
+    EmployeeFormComponent,
+    ConfirmModalComponent
   ],
   imports: [
     BrowserModule,
@@ -22,7 +27,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     HttpClientModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [ EmployeeService ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })

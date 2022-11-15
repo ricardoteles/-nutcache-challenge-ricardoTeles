@@ -32,7 +32,7 @@ export class EmployeeFormComponent implements OnInit {
 
   reactiveForm() {
     this.employeeForm = this.fb.group({
-      id: [this.data.employee.id],
+      id: [this.data.employee.id?this.data.employee.id:0],
       name: [this.data.employee.name, [Validators.required]],
       birthDate: [this.data.employee.birthDate, [Validators.required]],
       gender: [this.data.employee.gender, [Validators.required]],
@@ -56,7 +56,6 @@ export class EmployeeFormComponent implements OnInit {
         this.dialogRef.close({msg:'Employee has been updated successfully!'});
       });
     } else {
-      this.employeeForm.removeControl('id');
       this.employeeService.postEmployees(this.employeeForm.value).subscribe(resp => {
         this.dialogRef.close({msg:'Employee has been added successfully!'});
       });

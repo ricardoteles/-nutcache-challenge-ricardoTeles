@@ -1,5 +1,9 @@
 using Microsoft.EntityFrameworkCore;
 using NutcacheEmployeeAPI.Context;
+using NutcacheEmployeeAPI.Repositories;
+using NutcacheEmployeeAPI.Repositories.Interface;
+using NutcacheEmployeeAPI.Services;
+using NutcacheEmployeeAPI.Services.Interface;
 
 var MyAllowSpecificOrigins = "nutcache";
 
@@ -23,8 +27,14 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+
 builder.Services.AddDbContext<NutcacheContext>
     (options => options.UseSqlServer("Data Source=RICARDOT-NOTE;Database=nutcacheBD;Integrated Security=SSPI"));
+
+builder.Services.AddScoped<DbContext, NutcacheContext>();
+builder.Services.AddScoped<IEmployeeService, EmployeeService>();
+builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
 
 var app = builder.Build();
 
